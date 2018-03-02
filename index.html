@@ -2,12 +2,132 @@
 	<head>
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/white.css">
+		<title>Microservices Viable Platform</title>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>@eq8/mvp</h1>
+					<h2>Microservice Viable Platform</h2>
+				</section>
+				<section>
+					<section>
+						<h3>Problems</h3>
+					</section>
+					<section>
+						<ul>
+							<li>Speed</li>
+							<li>Maintainability</li>
+							<li>Scalability</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Faster and more releases:</h3>
+						<ul>
+							<li>New features</li>
+							<li>Development</li>
+							<li>Updates
+								<ul>
+									<li>Change requests</li>
+									<li>Fixes</li>
+									<li>Software Updates</li>
+								</ul>
+							</li>
+							<li>Additional Hardware</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Strategy</h3>
+						<small>
+						<i>
+							Organizations which design systems ...
+							are constrained to produce designs
+							which are copies of the communication structures of these organizations.
+						</i>
+						</small>
+					</section>
+					<section>
+						<h4>Decompose the platform</h4>
+						<ul>
+							<li>
+								<div>Make it inline with the organization to:</div>
+								<ul>
+									<li>Allow releases to be deployed independently</li>
+									<li>Enable them to scale independently</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Faster and more releases:</h4>
+						<ul>
+							<li>Platform: new features</li>
+							<li>Projects: development, change requests</li>
+							<li>Support: fixes</li>
+							<li>IT: software updates, hardware changes</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Strategy (cont'd)</h3>
+						<small>
+						<i>Automate all things!</i>
+						</small>
+					</section>
+					<section>
+						<h4>For Example,</h4>
+						<ul>
+							<li>Versioning</li>
+							<li>Deployment</li>
+							<li>Scaling</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>What is MVP?</section>
+					<section>
+						Approach
+						<ul>
+							<li>API first approach</li>
+							<li>Decompose</li>
+							<li>Automate</li>
+						</ul>
+					</section>
+					<section>
+						API
+					</section>
+					<section>
+						Architecture
+							- clusters
+								docker
+								serverless
+								repo
+										es
+										redis
+										pg/mysql/etc
+							- services
+							- microservices
+							- plugins
+					</section>
+					<section>
+						Automation
+					</section>
+					<section>
+						What happened to the other services
+						<ul>
+							<li>Identity Provider</li>
+							<li>Mail</li>
+							<li>Files</li>
+						</ul>
+					</section>
+				</section>
+				<section>Disadvantages</section>
 			</div>
 		</div>
 		<script src="js/reveal.js"></script>
