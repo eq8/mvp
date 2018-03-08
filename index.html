@@ -25,24 +25,51 @@
 				</section>
 				<section>
 					<section>
-						<h3>Faster and more releases:</h3>
-						<ul>
-							<li>New features</li>
-							<li>Development</li>
-							<li>Updates
+						<h3>Goal</h3>
+								<div>Faster and more releases by making the platform inline with the organization and enable teams to:</div>
 								<ul>
-									<li>Change requests</li>
-									<li>Fixes</li>
-									<li>Software Updates</li>
+									<li>Reduced the scope of their releases</li>
+									<li>Deploy independently of each other</li>
+									<li>Scale as needed</li>
 								</ul>
-							</li>
-							<li>Additional Hardware</li>
+					</section>
+					<section>
+						<h4>Faster and more releases:</h4>
+						<ul>
+							<li>Platform: new features</li>
+							<li>Projects: development, change requests</li>
+							<li>Support: fixes</li>
+							<li>IT: software updates, hardware changes</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Project</h5>
+						<ul>
+							<li>Reduce scope: wireframe</li>
+							<li>Independent of: </li>
+							<li>Scale: parallel work on a project</li>
 						</ul>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h3>Strategy</h3>
+						<small>
+						<i>How do we interact with the system</i>
+						</small>
+					</section>
+					<section>
+						<h4>API First</h4>
+						<ul>
+							<li>CQRS</li>
+							<li>DDD Aggregates</li>
+							<li>Event Sourcing</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Strategy (cont'd)</h3>
 						<small>
 						<i>
 							Organizations which design systems ...
@@ -54,23 +81,7 @@
 					<section>
 						<h4>Decompose the platform</h4>
 						<ul>
-							<li>
-								<div>Make it inline with the organization to:</div>
-								<ul>
-									<li>Reduce scope of a release</li>
-									<li>Allow releases to be deployed independently</li>
-									<li>Enable them to scale independently</li>
-								</ul>
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h4>Faster and more releases:</h4>
-						<ul>
-							<li>Platform: new features</li>
-							<li>Projects: development, change requests</li>
-							<li>Support: fixes</li>
-							<li>IT: software updates, hardware changes</li>
+							<li>TBD</li>
 						</ul>
 					</section>
 				</section>
@@ -84,49 +95,38 @@
 					<section>
 						<h4>For Example,</h4>
 						<ul>
-							<li>Versioning</li>
-							<li>Deployment</li>
-							<li>Scaling</li>
+							<li>Versioning (xAT / rollback): breaking, non-breaking, patch</li>
+							<li>Deployment: continuous integration</li>
+							<li>Scaling: serverless, logical sharding, replicas</li>
 						</ul>
 					</section>
 				</section>
 				<section>
 					<section>What is MVP?</section>
 					<section>
-						Approach
-						<ul>
-							<li>API first approach</li>
-							<li>Decompose</li>
-							<li>Automate</li>
-						</ul>
-					</section>
-					<section>
 						API
+						- bctxt/aggregate/version
+							- namespaced GraphQL
+							- reduce scope
+							- automate versioning
+							- scale independently
 					</section>
 					<section>
 						Architecture
 							- clusters
-								docker
-								serverless
-								repo
-										es
-										redis
-										pg/mysql/etc
+								- docker
+								- serverless
+								- repo
+									- es
+									- redis
+									- pg/mysql/etc
 							- services
 							- microservices
-								monorepos
+								- monorepos
 							- plugins
 					</section>
 					<section>
 						Automation
-					</section>
-					<section>
-						What happened to the other services
-						<ul>
-							<li>Identity Provider</li>
-							<li>Mail</li>
-							<li>Files</li>
-						</ul>
 					</section>
 				</section>
 				<section>Disadvantages</section>
