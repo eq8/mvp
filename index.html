@@ -12,7 +12,7 @@
 					<h2>Microservice Viable Platform</h2>
 				</section>
 				<section>
-					<i>A scalable and extensible platform for multi-tenant enterprise web based applications</i>
+					<i>A scalable and extensible platform for multi-tenant web based enterprise applications</i>
 				</section>
 				<section>
 					<section>
@@ -25,6 +25,9 @@
 							<li>Scalability</li>
 						</ul>
 					</section>
+					<section><h4>Speed</h4></section>
+					<section><h4>Maintainability</h4></section>
+					<section><h4>Scalability</h4></section>
 				</section>
 				<section>
 					<section>
@@ -41,6 +44,7 @@
 						<ul>
 							<li>Platform: new features</li>
 							<li>Projects: development, change requests</li>
+							<li>Reporting: integration, configuration</li>
 							<li>Support: fixes</li>
 							<li>IT: software updates, hardware changes</li>
 						</ul>
@@ -61,6 +65,15 @@
 							<li>DDD Aggregates</li>
 						</ul>
 					</section>
+					<section>
+						<h5>CQRS</h5>
+					</section>
+					<section>
+						<h5>Event Sourcing</h5>
+					</section>
+					<section>
+						<h5>DDD Aggregates</h5>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -74,9 +87,13 @@
 						</small>
 					</section>
 					<section>
-						<h4>Decompose the platform</h4>
+						<h4>Decompose and inline with the organization</h4>
 						<ul>
-							<li>TBD</li>
+							<li>Platform</li>
+							<li>Projects</li>
+							<li>Reporting?</li>
+							<li>Support</li>
+							<li>IT</li>
 						</ul>
 					</section>
 				</section>
@@ -99,32 +116,23 @@
 				</section>
 				<section>
 					<section>
-						<h3>What is MVP?</h3>
-					</section>
-					<section>
-						<h4>API</h4>
+						<h3>API</h3>
 						<ul>
 							<li>`/bounded-context/aggregate/version`</li>
 							<li>GraphQL</li>
 						</ul>
 					</section>
+				</section>
+				<section>
 					<section>
-						<h4>Architecture</h4>
+						<h3>Architecture</h3>
 						<ul>
 							<li>
 								Clusters
 								<ul>
 									<li>Docker</li>
 									<li>Serverless</li>
-									<li>
-										Backing Services
-										<ul>
-											<li>Elasticsearch</li>
-											<li>PostgreSQL/MySQL/Oracle/etc.</li>
-											<li>Redis</li>
-											<li>RabbitMQ</li>
-										</ul>
-									</li>
+									<li>Backing Services</li>
 								</ul>
 							</li>
 							<li>Services</li>
@@ -133,10 +141,37 @@
 						</ul>
 					</section>
 					<section>
-						Automation
+						<h4>Clusters</h4>
+					</section>
+					<section>
+						<h4>Services</h4>
+						<ul>
+							<li>Shared Services</li>
+							<li>Replicated Services</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Microservices</h4>
+						<ul>
+							<li>Serverless</li>
+							<li>Monorepo</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Plugins</h4>
+						<ul>
+							<li>Dependency Injection</li>
+							<li>Explicit Events vs. Implicit Pattern Matching</li>
+						</ul>
 					</section>
 				</section>
-				<section>Disadvantages</section>
+				<section>
+					<h3>Disadvantages</h3>
+					<ul>
+						<li>Performance</li>
+						<li>Operational Complexity</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 		<script src="js/reveal.js"></script>
