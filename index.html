@@ -42,14 +42,6 @@
 							<li>IT: software updates, hardware changes</li>
 						</ul>
 					</section>
-					<section>
-						<h5>Project</h5>
-						<ul>
-							<li>Reduce scope: wireframe</li>
-							<li>Independent of: </li>
-							<li>Scale: parallel work on a project</li>
-						</ul>
-					</section>
 				</section>
 				<section>
 					<section>
@@ -62,8 +54,8 @@
 						<h4>API First</h4>
 						<ul>
 							<li>CQRS</li>
-							<li>DDD Aggregates</li>
 							<li>Event Sourcing</li>
+							<li>DDD Aggregates</li>
 						</ul>
 					</section>
 				</section>
@@ -98,32 +90,44 @@
 							<li>Versioning (xAT / rollback): breaking, non-breaking, patch</li>
 							<li>Deployment: continuous integration</li>
 							<li>Scaling: serverless, logical sharding, replicas</li>
+							<li>Documentation: API / Release</li>
 						</ul>
 					</section>
 				</section>
 				<section>
-					<section>What is MVP?</section>
 					<section>
-						API
-						- bctxt/aggregate/version
-							- namespaced GraphQL
-							- reduce scope
-							- automate versioning
-							- scale independently
+						<h3>What is MVP?</h3>
 					</section>
 					<section>
-						Architecture
-							- clusters
-								- docker
-								- serverless
-								- repo
-									- es
-									- redis
-									- pg/mysql/etc
-							- services
-							- microservices
-								- monorepos
-							- plugins
+						<h4>API</h4>
+						<ul>
+							<li>`/bounded-context/aggregate/version`</li>
+							<li>GraphQL</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Architecture</h4>
+						<ul>
+							<li>
+								Clusters
+								<ul>
+									<li>Docker</li>
+									<li>Serverless</li>
+									<li>
+										Backing Services
+										<ul>
+											<li>Elasticsearch</li>
+											<li>PostgreSQL/MySQL/Oracle/etc.</li>
+											<li>Redis</li>
+											<li>RabbitMQ</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>Services</li>
+							<li>Microservices</li>
+							<li>Plugins</li>
+						</ul>
 					</section>
 					<section>
 						Automation
