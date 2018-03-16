@@ -84,6 +84,9 @@
 							<li>GraphQL</li>
 						</ul>
 					</section>
+					<section>
+						<pre><code class="hljs">placeholder</code></pre>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -120,53 +123,23 @@
 						<i>How does the infrastructure look?</i>
 						</small>
 					</section>
-				</section>
-				<section>
-					<section>
-						<h3>Strategy (cont'd)</h3>
-						<small>
-						<i>How does it make it faster to release?</i>
-						</small>
-					</section>
-					<section>
-						<h4>Automate all things</h4>
-						<ul>
-							<li>Versioning (xAT / rollback): breaking, non-breaking, patch</li>
-							<li>Deployment: continuous integration/deployment</li>
-							<li>Scaling: serverless, logical sharding, replicas</li>
-							<li>Documentation: API / Release</li>
-						</ul>
-					</section>
-					<section>
-						<h5>Versioning</h5>
-						<ul>
-							<li>API</li>
-							<li>Data</li>
-							<li>Configuration Schema</li>
-						</ul>
-					</section>
-				</section>
-				<section>
-				</section>
-				<section>
 					<section>
 						<h3>Architecture</h3>
 						<ul>
-							<li>
-								Clusters
-								<ul>
-									<li>Docker</li>
-									<li>Serverless</li>
-									<li>Backing Services</li>
-								</ul>
-							</li>
+							<li>Clusters</li>
 							<li>Services</li>
 							<li>Microservices</li>
-							<li>Plugins</li>
 						</ul>
 					</section>
 					<section>
+					</section>
+					<section>
 						<h4>Clusters</h4>
+						<ul>
+							<li>Docker</li>
+							<li>Serverless</li>
+							<li>Stores</li>
+						</ul>
 					</section>
 					<section>
 						<h4>Services</h4>
@@ -182,18 +155,29 @@
 							<li>Monorepo</li>
 						</ul>
 					</section>
+				</section>
+				<section>
 					<section>
-						<h4>Plugins</h4>
+						<h3>Summary</h3>
+						<small>
+						<i>How does it make it faster to release?</i>
+						</small>
+					</section>
+					<section>
+						<h4>Automates all things</h4>
 						<ul>
-							<li>Dependency Injection vs Service Locator</li>
-							<li>Explicit Events vs. Implicit Pattern Matching</li>
+							<li>Partitioning: work, components, releases</li>
+							<li>Versioning (xAT / rollback): breaking, non-breaking, patch</li>
+							<li>Deployment: continuous integration/deployment</li>
+							<li>Scaling: serverless, logical sharding, replicas</li>
+							<li>Documentation: API / Release</li>
 						</ul>
 					</section>
 				</section>
 				<section>
-					<h3>Disadvantages</h3>
+					<h3>Caveats</h3>
 					<ul>
-						<li>WIP / Training?</li>
+						<li>Risks: WIP / Training</li>
 						<li>Performance</li>
 						<li>Operational Complexity</li>
 					</ul>
@@ -212,13 +196,7 @@
 				history: true,
 				center: true,
 				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/search/search.js', async: true },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
 		</script>
