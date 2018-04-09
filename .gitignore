@@ -1,0 +1,5 @@
+.env
+server.env
+docker-stack.yml
+bin
+install.img

@@ -1,0 +1,13 @@
+# compatible with 17.06.0+
+version: "3.3"
+# create an attachable network for containers - i.e. not service - to run pre/post-run scripts
+networks:
+  net:
+    attachable: true
+    driver: overlay
+services:
+  main:
+    image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/main
+    build: "./services/main"
+    networks:
+     - net
