@@ -1,13 +1,66 @@
-# compatible with 17.06.0+
 version: "3.3"
-# create an attachable network for containers - i.e. not service - to run pre/post-run scripts
 networks:
   net:
     attachable: true
     driver: overlay
 services:
-  main:
-    image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/main
-    build: "./services/main"
-    networks:
-     - net
+   rethinkdb:
+      image: rethinkdb:2.3.6
+      networks:
+        - net
+      ports:
+         - "8080:8080"
+         - "28015:28015"
+   seed:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/seed
+      networks:
+        - net
+      build:
+         context: ./services/seed
+      restart: "no"
+      depends_on:
+         - rethinkdb
+   controller:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-controller
+      networks:
+        - net
+      build:
+         dockerfile: Dockerfile
+         context: ./services/controller
+      restart: "always"
+      ports:
+         - "8000:8000"
+      depends_on:
+         - seed
+      environment:
+         - "LOG_LEVEL=trace"
+   resolver.api.domain.query.load:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-microservice:api.domain.query.load
+      networks:
+        - net
+      build:
+         context: ./services/resolvers/api/domain/query/load
+      restart: "always"
+   resolver.utils.get:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolver:utils.get
+      networks:
+        - net
+      build:
+         context: ./services/resolvers/utils/get
+      restart: "always"
+   view.ui.defaults:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:ui.defaults
+      networks:
+        - net
+      build:
+         context: ./services/views/ui/defaults
+      restart: "always"
+   view.api.graphql:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
+      networks:
+        - net
+      build:
+         context: ./services/views/api/graphql
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"

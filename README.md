@@ -1,6 +1,12 @@
-# eq8/onprem
+# Microservices Viable Platform (@eq8/mvp)
 
-A minimal on-prem installer
+[![Greenkeeper badge](https://badges.greenkeeper.io/eq8/mvp.svg)](https://greenkeeper.io/)
+
+**EXPERIMENTAL**: Not yet ready to be released
+
+A scalable and extensible platform for multi-tenant web based enterprise applications
+
+https://eq8.js.org/mvp
 
 ## REQUIREMENTS
 
@@ -30,7 +36,7 @@ A minimal on-prem installer
 
 ```
 # On a manager node of Docker
-git clone --recurse-submodules git@github.com:eq8/onprem.git
+git clone --recurse-submodules git@github.com:eq8/mvp.git
 
 # TODO: edit docker-compose.yml and add related submodules in the services directory
 make build

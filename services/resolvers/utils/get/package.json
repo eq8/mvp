@@ -1,0 +1,11 @@
+{
+  "name": "api-domain-query-load",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "express": "4.16.3",
+    "lodash": "4.17.10",
+    "rethinkdb": "2.3.3"
+  }
+}
