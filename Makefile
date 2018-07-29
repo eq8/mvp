@@ -23,7 +23,7 @@ build: .env
 	docker-compose build --pull
 	mkdir -p $(PWD)/bin
 	@echo 'Saving docker images...'
-	docker-compose config | docker run -i --rm evns/yq '.services|.[]|.image' | grep -o '[^"]\+' | awk '{split($$0,a,"/"); print "./bin/" a[3] ".img " $$0}' | xargs -n 2 docker save -o
+	docker-compose config | docker run -i --rm evns/yq '.services|.[]|.image' | grep $(REGISTRY_HOST) | grep -o '[^"]\+' | awk '{split($$0,a,"/"); print "./bin/" a[3] ".img " $$0}' | xargs -n 2 docker save -o
 	@echo 'Building installer...'
 	docker build -t $(REGISTRY_NAMESPACE)/$(BOOT_NAME) .
 	@echo 'Saving installer...'
@@ -31,7 +31,8 @@ build: .env
 	$(MAKE) help
 
 docker-compose.tmp.yml:
-	cat docker-compose.yml | grep -v '^[ ]*build:' > $(PWD)/docker-compose.tmp.yml
+	# cat docker-compose.yml | grep -v '^[ ]*build:' > $(PWD)/docker-compose.tmp.yml
+	docker-compose config > $(PWD)/docker-compose.tmp.yml
 
 ship: .env docker-compose.tmp.yml
 	-docker service create --name $(REGISTRY_NAME) --mount type=volume,destination=/var/lib/registry -p $(REGISTRY_PORT):5000 $(REGISTRY_IMAGE)
