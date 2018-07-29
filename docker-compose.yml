@@ -7,14 +7,14 @@ services:
    rethinkdb:
       image: rethinkdb:2.3.6
       networks:
-        - net
+         - net
       ports:
          - "8080:8080"
          - "28015:28015"
    seed:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/seed
       networks:
-        - net
+         - net
       build:
          context: ./services/seed
       restart: "no"
@@ -23,7 +23,7 @@ services:
    controller:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-controller
       networks:
-        - net
+         - net
       build:
          dockerfile: Dockerfile
          context: ./services/controller
@@ -37,28 +37,28 @@ services:
    resolver.api.domain.query.load:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-microservice:api.domain.query.load
       networks:
-        - net
+         - net
       build:
          context: ./services/resolvers/api/domain/query/load
       restart: "always"
    resolver.utils.get:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolver:utils.get
       networks:
-        - net
+         - net
       build:
          context: ./services/resolvers/utils/get
       restart: "always"
    view.ui.defaults:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:ui.defaults
       networks:
-        - net
+         - net
       build:
          context: ./services/views/ui/defaults
       restart: "always"
    view.api.graphql:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
       networks:
-        - net
+         - net
       build:
          context: ./services/views/api/graphql
       restart: "always"
