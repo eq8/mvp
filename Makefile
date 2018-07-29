@@ -22,8 +22,11 @@ help:
 build: .env
 	docker-compose build --pull
 	mkdir -p $(PWD)/bin
+	@echo 'Saving docker images...'
 	docker-compose config | docker run -i --rm evns/yq '.services|.[]|.image' | grep -o '[^"]\+' | awk '{split($$0,a,"/"); print "./bin/" a[3] ".img " $$0}' | xargs -n 2 docker save -o
+	@echo 'Building installer...'
 	docker build -t $(REGISTRY_NAMESPACE)/$(BOOT_NAME) .
+	@echo 'Saving installer...'
 	docker save -o $(PWD)/$(BOOT_NAME).img $(REGISTRY_NAMESPACE)/$(BOOT_NAME)
 	$(MAKE) help
 
@@ -49,4 +52,5 @@ update:
 clean:
 	-docker service rm $(REGISTRY_NAME)
 	-docker stack rm $(STACK_NAME)
+	-rm -rf .env docker-compose.tmp.yml bin
 	docker system prune -a
