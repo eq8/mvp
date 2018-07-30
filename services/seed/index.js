@@ -52,7 +52,7 @@ function seedDomain({ conn, table }) {
 					view: 'http://view.ui.defaults/'
 				},
 				'/api/domain/0.0': {
-					view: 'http://view.api.graphql/api/domain/0.0',
+					view: 'http://view-api-graphql/api/domain/0.0',
 					authenticate: {
 						secretOrKeyProvider: 'https://bbartolome.auth0.com/.well-known/jwks.json'
 					}
@@ -114,7 +114,7 @@ function seedBoundedContexts({ conn, table }) {
 									methods: {
 										created: {
 											resolver: {
-												uri: 'http://resolver.utils.get/0.0?path=created'
+												uri: 'http://resolver-utils-get/0.0?path=created'
 											},
 											returnType: {
 												name: 'String'
@@ -122,7 +122,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										createdBy: {
 											resolver: {
-												uri: 'http://resolver.utils.get/0.0?path=createdBy'
+												uri: 'http://resolver-utils-get/0.0?path=createdBy'
 											},
 											returnType: {
 												name: 'String'
@@ -130,7 +130,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModified: {
 											resolver: {
-												uri: 'http://resolver.utils.get/0.0?path=lastModified'
+												uri: 'http://resolver-utils-get/0.0?path=lastModified'
 											},
 											returnType: {
 												name: 'String'
@@ -138,7 +138,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModifiedBy: {
 											resolver: {
-												uri: 'http://resolver.utils.get/0.0?path=lastModifiedBy'
+												uri: 'http://resolver-utils-get/0.0?path=lastModifiedBy'
 											},
 											returnType: {
 												name: 'String'
@@ -277,7 +277,7 @@ function seedBoundedContexts({ conn, table }) {
 							methods: {
 								meta: {
 									resolver: {
-										uri: 'http://resolver.utils.get/0.0?path=meta'
+										uri: 'http://resolver-utils-get/0.0?path=meta'
 									},
 									returnType: {
 										name: 'Meta'
@@ -287,7 +287,7 @@ function seedBoundedContexts({ conn, table }) {
 							queries: {
 								load: {
 									resolver: {
-										uri: 'http://resolver.api.domain.query.load/0.0'
+										uri: 'http://resolver-api-domain-query-load/0.0'
 									},
 									params: {
 										in: 'InputDomainID'

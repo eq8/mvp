@@ -34,28 +34,28 @@ services:
          - seed
       environment:
          - "LOG_LEVEL=trace"
-   resolver.api.domain.query.load:
+   resolver-api-domain-query-load:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-microservice:api.domain.query.load
       networks:
          - net
       build:
          context: ./services/resolvers/api/domain/query/load
       restart: "always"
-   resolver.utils.get:
+   resolver-utils-get:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolver:utils.get
       networks:
          - net
       build:
          context: ./services/resolvers/utils/get
       restart: "always"
-   view.ui.defaults:
+   view-ui-defaults:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:ui.defaults
       networks:
          - net
       build:
          context: ./services/views/ui/defaults
       restart: "always"
-   view.api.graphql:
+   view-api-graphql:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
       networks:
          - net

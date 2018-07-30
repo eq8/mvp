@@ -40,7 +40,7 @@ ship: .env docker-compose.tmp.yml
 	docker-compose -f $(PWD)/docker-compose.tmp.yml push
 
 run: .env docker-compose.tmp.yml
-	docker-compose -f $(PWD)/docker-compose.tmp.yml config> $(PWD)/docker-stack.yml
+	docker-compose -f $(PWD)/docker-compose.tmp.yml config > $(PWD)/docker-stack.yml
 	docker stack deploy --resolve-image always -c $(PWD)/docker-stack.yml $(STACK_NAME)
 	docker service ls
 	docker stack ps $(STACK_NAME)
