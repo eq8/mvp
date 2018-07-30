@@ -20,7 +20,7 @@ help:
 	@echo docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock $(REGISTRY_NAMESPACE)/$(BOOT_NAME) run
 
 build: .env
-	docker-compose build --pull
+	docker-compose build --pull --no-cache
 	mkdir -p $(PWD)/bin
 	@echo 'Saving docker images...'
 	docker-compose config | docker run -i --rm evns/yq '.services|.[]|.image' | grep $(REGISTRY_HOST) | grep -o '[^"]\+' | awk '{split($$0,a,"/"); print "./bin/" a[3] ".img " $$0}' | xargs -n 2 docker save -o
@@ -40,8 +40,8 @@ ship: .env docker-compose.tmp.yml
 	docker-compose -f $(PWD)/docker-compose.tmp.yml push
 
 run: .env docker-compose.tmp.yml
-	docker-compose -f $(PWD)/docker-compose.tmp.yml config > $(PWD)/docker-stack.yml
-	docker stack deploy --resolve-image always -c $(PWD)/docker-stack.yml $(STACK_NAME)
+	docker-compose -f $(PWD)/docker-compose.tmp.yml config > $(PWD)/docker-compose.stack.yml
+	docker stack deploy --resolve-image always -c $(PWD)/docker-compose.stack.yml $(STACK_NAME)
 	docker service ls
 	docker stack ps $(STACK_NAME)
 
@@ -55,3 +55,6 @@ clean:
 	-docker stack rm $(STACK_NAME)
 	-rm -rf .env docker-compose.tmp.yml bin
 	docker system prune -a
+
+watch:
+	REGISTRY_HOST=$(REGISTRY_HOST) REGISTRY_NAMESPACE=$(REGISTRY_NAMESPACE) $(shell npm bin)/nodemon

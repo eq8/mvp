@@ -1,0 +1,31 @@
+{
+  "name": "@eq8/mvp",
+  "version": "0.1.0",
+  "description": "Microservices Viable Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eq8/mvp.git"
+  },
+  "keywords": [
+    "eq8",
+    "mvp",
+    "microservices",
+    "platform"
+  ],
+  "author": "bbartolome",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/eq8/mvp/issues"
+  },
+  "homepage": "https://github.com/eq8/mvp#readme",
+  "devDependencies": {
+    "nodemon": "1.18.3"
+  },
+  "nodemonConfig": {
+    "exec": "docker-compose up --build --remove-orphans"
+  }
+}

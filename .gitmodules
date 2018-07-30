@@ -1,3 +1,3 @@
 [submodule "services/controller"]
 	path = services/controller
-	url = git@github.com:eq8/mvp-controller.git
+	url = https://github.com/eq8/mvp-controller.git

@@ -25,6 +25,17 @@ https://eq8.js.org/mvp
 
 - https://docs.docker.com/compose/install/
 
+
+## Development
+
+```
+git clone --recurse-submodules git@github.com:eq8/mvp.git
+
+make watch
+
+open http://127.0.0.1/api/domain/0.0
+```
+
 ## USAGE
 
 ### Initialize
@@ -36,9 +47,6 @@ https://eq8.js.org/mvp
 
 ```
 # On a manager node of Docker
-git clone --recurse-submodules git@github.com:eq8/mvp.git
-
-# TODO: edit docker-compose.yml and add related submodules in the services directory
 make build
 make ship
 make run

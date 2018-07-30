@@ -1,5 +1,7 @@
 .env
 server.env
-docker-stack.yml
+docker-compose.stack.yml
+docker-compose.tmp.yml
 bin
 install.img
+node_modules

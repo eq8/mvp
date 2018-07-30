@@ -38,7 +38,7 @@ async function connectAndSeed() {
 }
 
 function seedDomain({ conn, table }) {
-	const id = '127.0.0.1:8000';
+	const id = '127.0.0.1';
 
 	return r
 		.table(table)
@@ -63,7 +63,7 @@ function seedDomain({ conn, table }) {
 }
 
 function seedBoundedContexts({ conn, table }) {
-	const id = '127.0.0.1:8000/api';
+	const id = '127.0.0.1/api';
 
 	return r
 		.table(table)

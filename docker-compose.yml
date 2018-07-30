@@ -29,7 +29,7 @@ services:
          context: ./services/controller
       restart: "always"
       ports:
-         - "8000:8000"
+         - "80:80"
       depends_on:
          - seed
       environment:
