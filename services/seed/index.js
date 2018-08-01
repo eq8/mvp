@@ -49,7 +49,7 @@ function seedDomain({ conn, table }) {
 			disableDefaultRoutes: false,
 			routes: {
 				'/': {
-					view: 'http://view.ui.defaults/'
+					view: 'http://view-ui-default/'
 				},
 				'/api/domain/0.0': {
 					view: 'http://view-api-graphql/api/domain/0.0',

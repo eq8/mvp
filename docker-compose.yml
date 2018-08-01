@@ -48,7 +48,7 @@ services:
       build:
          context: ./services/resolvers/utils/get
       restart: "always"
-   ui:
+   view-ui-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
       networks:
          - net
