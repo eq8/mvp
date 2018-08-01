@@ -1,12 +1,13 @@
 'use strict';
 
-const define = require('@eq8/mvp-boot');
+const define = require('@eq8/mvp-boot')();
 
 define([
+	'lodash',
 	'-/options/index.js',
 	'-/logger/index.js',
 	'-/server/index.js'
-], (options, logger, server) => {
+], (_, options, logger, server) => {
 	const defaults = {
 		port: 80
 	};
@@ -25,5 +26,9 @@ define([
 		res.end();
 	});
 
-	server.listen(port);
+	server.listen({ port }).then(success => {
+		logger.info('server is listening', { port, success });
+	}, err => {
+		throw new Error(err);
+	});
 });

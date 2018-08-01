@@ -48,7 +48,7 @@ function seedDomain({ conn, table }) {
 			version: 1,
 			disableDefaultRoutes: false,
 			routes: {
-				'/': {
+				'/test': {
 					view: 'http://view-ui-default/'
 				},
 				'/api/domain/0.0': {
