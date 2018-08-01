@@ -5,3 +5,4 @@ docker-compose.tmp.yml
 bin
 install.img
 node_modules
+*.swp
