@@ -1,20 +1,12 @@
 version: "3.3"
-networks:
-  net:
-    attachable: true
-    driver: overlay
 services:
    rethinkdb:
       image: rethinkdb:2.3.6
-      networks:
-         - net
       ports:
          - "8080:8080"
          - "28015:28015"
    seed:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/seed
-      networks:
-         - net
       build:
          context: ./services/seed
       restart: "no"
@@ -22,8 +14,6 @@ services:
          - rethinkdb
    controller:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-controller
-      networks:
-         - net
       build:
          dockerfile: Dockerfile
          context: ./services/controller
@@ -36,29 +26,23 @@ services:
          - "LOG_LEVEL=trace"
    resolver-api-domain-query-load:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-microservice:api.domain.query.load
-      networks:
-         - net
       build:
          context: ./services/resolvers/api/domain/query/load
       restart: "always"
    resolver-utils-get:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolver:utils.get
-      networks:
-         - net
       build:
          context: ./services/resolvers/utils/get
       restart: "always"
    view-ui-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
-      networks:
-         - net
       build:
          context: ./services/ui
       restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
    view-api-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
-      networks:
-         - net
       build:
          context: ./services/api
       restart: "always"
