@@ -52,7 +52,7 @@ function seedDomain({ conn, table }) {
 					view: 'http://view-ui-default/'
 				},
 				'/api/domain/0.0': {
-					view: 'http://view-api-graphql/api/domain/0.0',
+					view: 'http://view-api-default/api/domain/0.0',
 					authenticate: {
 						secretOrKeyProvider: 'https://bbartolome.auth0.com/.well-known/jwks.json'
 					}

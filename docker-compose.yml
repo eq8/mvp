@@ -55,12 +55,12 @@ services:
       build:
          context: ./services/ui
       restart: "always"
-   view-api-graphql:
+   view-api-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
       networks:
          - net
       build:
-         context: ./services/views/api/graphql
+         context: ./services/api
       restart: "always"
       environment:
          - "LOG_LEVEL=trace"
