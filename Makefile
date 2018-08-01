@@ -21,6 +21,8 @@ help:
 
 build: .env
 	docker-compose build --pull --no-cache
+
+compile: build
 	mkdir -p $(PWD)/bin
 	@echo 'Saving docker images...'
 	docker-compose config | docker run -i --rm evns/yq '.services|.[]|.image' | grep $(REGISTRY_HOST) | grep -o '[^"]\+' | awk '{split($$0,a,"/"); print "./bin/" a[3] ".img " $$0}' | xargs -n 2 docker save -o
