@@ -42,7 +42,7 @@ services:
       environment:
          - "LOG_LEVEL=trace"
    view-api-default:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-api
       build:
          context: ./services/api
       restart: "always"

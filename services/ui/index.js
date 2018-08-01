@@ -1,33 +1,25 @@
 'use strict';
 
 const define = require('@eq8/mvp-boot')();
+const path = require('path');
 
 define([
 	'lodash',
+	'express',
 	'-/options/index.js',
 	'-/logger/index.js',
 	'-/server/index.js'
-], (_, options, logger, server) => {
+], (_, express, options, logger, server) => {
 	const defaults = {
 		port: 80
 	};
-	const settings = _.defaultsDeep(options.get(), defaults)
-	const { port } = settings;
+	const { port } = _.defaultsDeep({}, options.get(), defaults);
 
-	server.use((req, res) => {
-		const { method, url, headers } = req;
-
-		logger.info('req:', { method, url, headers });
-
-		req.on('data', chunk => logger.info(chunk.toString()));
-
-		res.writeHead(200, { 'Content-Type': 'text/plain' });
-		res.write('Hello World!');
-		res.end();
-	});
+	server.use('/', express.static(path.join(__dirname, './static/build')));
 
 	server.listen({ port }).then(success => {
 		logger.info('server is listening', { port, success });
+		server.setState('ready');
 	}, err => {
 		throw new Error(err);
 	});

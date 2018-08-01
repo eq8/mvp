@@ -47,17 +47,23 @@ function seedDomain({ conn, table }) {
 			id,
 			version: 1,
 			disableDefaultRoutes: false,
-			routes: {
-				'/test': {
-					view: 'http://view-ui-default/'
-				},
-				'/api/domain/0.0': {
+			routes: [
+				{
+					path: '/home/',
+					view: 'http://view-ui-default',
+					passthru: true
+				}, {
+					path: '/api/domain/0.0',
 					view: 'http://view-api-default/api/domain/0.0',
-					authenticate: {
-						secretOrKeyProvider: 'https://bbartolome.auth0.com/.well-known/jwks.json'
-					}
+					params: [
+						{
+							authenticate: {
+								secretOrKeyProvider: 'https://bbartolome.auth0.com/.well-known/jwks.json'
+							}
+						}
+					]
 				}
-			}
+			]
 		})
 		.run(conn);
 }
