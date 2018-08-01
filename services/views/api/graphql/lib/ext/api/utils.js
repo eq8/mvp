@@ -10,7 +10,7 @@ define([
 	'request',
 	'-/logger/index.js',
 	'-/store/index.js',
-	'-/utils/index.js'
+	'-/ext/utils/index.js'
 ], (
 	_,
 	uuidv4,

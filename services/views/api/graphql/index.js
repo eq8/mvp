@@ -1,27 +1,33 @@
 'use strict';
 
 const path = require('path');
-const rjs = require('requirejs');
+const boot = require('@eq8/mvp-boot');
 
+const define = boot({
+	extensions: path.join(__dirname, './lib/ext')
+});
 
-const map = {
-	'*': {
-		'-': path.join(__dirname, './plugins')
-	}
-};
-
-rjs.config({ map });
-
-rjs([
+define([
+	'lodash',
+	'-/options/index.js',
 	'-/logger/index.js',
 	'-/store/index.js',
-	'-/server/index.js'
-], (logger, store, server) => {
+	'-/server/index.js',
+	'-/ext/api/index.js'
+], (_, options, logger, store, server, api) => {
 	logger.info('initialized');
 
-	const port = parseInt(process.env.PORT || 80, 10);
-	const storeUri = process.env.STORE_URI || 'rethinkdb://admin@127.0.0.1:28015';
-	const retryInterval = parseInt(process.env.RETRY_INTERVAL || 1000, 10);
+	const defaults = {
+		port: 80,
+		storeUri: 'rethinkdb://admin@127.0.0.1:28015',
+		retryInterval: 1000
+	}
+	const settings = _.defaults(options.get(), defaults);
+	const port = parseInt(_.get(settings, 'port'), 10);
+	const storeUri = _.get(settings, 'storeUri');
+	const retryInterval = parseInt(options.get('retryInterval'), 10);
+
+	server.use('/:bctxt/:aggregate/:v', api.middleware());
 
 	listen().then(connect);
 
