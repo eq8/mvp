@@ -48,12 +48,12 @@ services:
       build:
          context: ./services/resolvers/utils/get
       restart: "always"
-   view-ui-defaults:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:ui.defaults
+   ui:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
       networks:
          - net
       build:
-         context: ./services/views/ui/defaults
+         context: ./services/ui
       restart: "always"
    view-api-graphql:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-views:api.graphql
