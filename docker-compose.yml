@@ -24,16 +24,20 @@ services:
          - seed
       environment:
          - "LOG_LEVEL=trace"
-   resolver-api-domain-query-load:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-microservice:api.domain.query.load
+   repository:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-repository
       build:
-         context: ./services/resolvers/api/domain/query/load
+         context: ./services/repository
       restart: "always"
-   resolver-utils-get:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolver:utils.get
+      environment:
+         - "LOG_LEVEL=trace"
+   resolvers:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolvers
       build:
-         context: ./services/resolvers/utils/get
+         context: ./services/resolvers
       restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
    view-ui-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
       build:

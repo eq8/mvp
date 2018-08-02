@@ -49,7 +49,7 @@ function seedDomain({ conn, table }) {
 			disableDefaultRoutes: false,
 			routes: [
 				{
-					path: '/home/',
+					path: '/home',
 					view: 'http://view-ui-default',
 					passthru: true
 				}, {
@@ -86,6 +86,25 @@ function seedBoundedContexts({ conn, table }) {
 					versions: {
 						'0.0': {
 							inputEntities: {
+								InputKeyValue: {
+									methods: {
+										key: {
+											returnType: {
+												name: 'String'
+											}
+										},
+										value: {
+											returnType: {
+												name: 'String'
+											}
+										},
+										type: {
+											returnType: {
+												name: 'String'
+											}
+										}
+									}
+								},
 								InputDomainID: {
 									methods: {
 										id: {
@@ -120,7 +139,7 @@ function seedBoundedContexts({ conn, table }) {
 									methods: {
 										created: {
 											resolver: {
-												uri: 'http://resolver-utils-get/0.0?path=created'
+												uri: 'http://resolvers/utils/get/0.0?path=created'
 											},
 											returnType: {
 												name: 'String'
@@ -128,7 +147,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										createdBy: {
 											resolver: {
-												uri: 'http://resolver-utils-get/0.0?path=createdBy'
+												uri: 'http://resolvers/utils/get/0.0?path=createdBy'
 											},
 											returnType: {
 												name: 'String'
@@ -136,7 +155,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModified: {
 											resolver: {
-												uri: 'http://resolver-utils-get/0.0?path=lastModified'
+												uri: 'http://resolvers/utils/get/0.0?path=lastModified'
 											},
 											returnType: {
 												name: 'String'
@@ -144,7 +163,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModifiedBy: {
 											resolver: {
-												uri: 'http://resolver-utils-get/0.0?path=lastModifiedBy'
+												uri: 'http://resolvers/utils/get/0.0?path=lastModifiedBy'
 											},
 											returnType: {
 												name: 'String'
@@ -246,19 +265,17 @@ function seedBoundedContexts({ conn, table }) {
 								}
 							},
 							actions: {
-								browse: {
-									params: {
-										in: 'InputDomainPagination'
-									}
-								},
-								read: {
-									params: {
-										in: 'InputDomainID'
-									}
-								},
 								add: {
 									params: {
 										in: 'InputDomainID'
+									}
+								},
+								edit: {
+									params: {
+										in: 'InputKeyValue'
+									},
+									resolver: {
+										uri: 'http://resolvers/utils/set/0.0'
 									}
 								},
 								delete: {
@@ -283,7 +300,7 @@ function seedBoundedContexts({ conn, table }) {
 							methods: {
 								meta: {
 									resolver: {
-										uri: 'http://resolver-utils-get/0.0?path=meta'
+										uri: 'http://resolvers/utils/get/0.0?path=meta'
 									},
 									returnType: {
 										name: 'Meta'
@@ -291,9 +308,17 @@ function seedBoundedContexts({ conn, table }) {
 								}
 							},
 							queries: {
-								load: {
+								browse: {
 									resolver: {
-										uri: 'http://resolver-api-domain-query-load/0.0'
+										uri: 'http://repository/queries/browse/0.0?type=domains'
+									},
+									params: {
+										in: 'InputDomainPagination'
+									}
+								},
+								read: {
+									resolver: {
+										uri: 'http://repository/queries/read/0.0?type=domains'
 									},
 									params: {
 										in: 'InputDomainID'
@@ -312,7 +337,7 @@ function seedBoundedContexts({ conn, table }) {
 			},
 			repositories: {
 				default: {
-					uri: 'https://repository/api' // TODO: define API for repositories
+					commit: 'https://repository/actions/commit/0.0' // TODO: define API for repositories
 				}
 			}
 		})

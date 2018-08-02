@@ -1,0 +1,30 @@
+{
+  "name": "@eq8/mvp-resolvers",
+  "version": "0.1.0",
+  "description": "TBD",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eq8/mvp-resolvers.git"
+  },
+  "keywords": [
+    "eq8",
+    "mvp-resolvers"
+  ],
+  "author": "bbartolome",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/eq8/mvp-resolvers/issues"
+  },
+  "homepage": "https://github.com/eq8/mvp-resolvers",
+  "dependencies": {
+    "@eq8/mvp-boot": "git+https://git@github.com/eq8/mvp-boot.git#master",
+    "body-parser": "1.18.3"
+  }
+}
