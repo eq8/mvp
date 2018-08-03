@@ -361,8 +361,8 @@ ${inputs}
 				version: obj => Promise.resolve(_.get(obj, 'version') || 0)
 			},
 			Result: {
-				id: obj => Promise.resolve(obj.get('id')),
-				success: obj => Promise.resolve(obj.get('success'))
+				id: obj => Promise.resolve(_.get(obj, 'id')),
+				success: obj => Promise.resolve(_.get(obj, 'success'))
 			},
 			Transaction: _.defaultsDeep({}, {
 				commit
@@ -408,13 +408,25 @@ ${inputs}
 		]));
 	}
 
-	function commit(obj) {
-		const result = Map({
-			id: obj.get('id'),
-			success: true // TODO: replace with actual value for success
-		});
+	async function commit(obj, args, rawCtxt) {
+		const id = obj.get('id');
+		const repository = obj.get('repository');
+		const uri = repository
+			? repository.get('uri')
+			: '';
+		const tmp = [{
+			id: uuidv4()
+		}];
 
-		return Promise.resolve(result);
+		logger.info('commit', { obj });
+
+		const dispatch = getDispatcher({ uri });
+
+		const result = await dispatch(tmp, args, rawCtxt);
+
+		const success = _.get(result, 'success');
+
+		return { id, success };
 	}
 
 	function getEntityResolvers(entityName, methods) {
@@ -449,7 +461,7 @@ ${inputs}
 					json: { obj, args, ctxt }
 				}, (httpError, res, body) => {
 					if (httpError) {
-						logger.error('controller unable to resolve', { httpError, body });
+						logger.error('controller unable to resolve', { httpError, body, uri });
 
 						return reject(new Error('Unexpected error while resolving'));
 					}
@@ -470,10 +482,12 @@ ${inputs}
 		const { actions } = options || {};
 
 		return _.mapValues(actions, (action, name) => ((obj, args) => {
+			const resolver = _.get(action, 'resolver') || {};
 			const tasks = obj.get('tasks');
 			const task = Map({
 				name,
-				args: toImmutable(args)
+				args: toImmutable(args),
+				resolver
 			});
 
 			return obj.set('tasks', tasks.push(task));

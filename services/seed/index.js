@@ -265,6 +265,14 @@ function seedBoundedContexts({ conn, table }) {
 								}
 							},
 							actions: {
+								read: {
+									resolver: {
+										uri: 'http://repository/queries/read/0.0?type=domains'
+									},
+									params: {
+										in: 'InputDomainID'
+									}
+								},
 								add: {
 									params: {
 										in: 'InputDomainID'
@@ -337,7 +345,7 @@ function seedBoundedContexts({ conn, table }) {
 			},
 			repositories: {
 				default: {
-					commit: 'https://repository/actions/commit/0.0' // TODO: define API for repositories
+					uri: 'http://repository/actions/commit/0.0' // TODO: define API for repositories and use https
 				}
 			}
 		})
