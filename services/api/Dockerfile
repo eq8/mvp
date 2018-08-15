@@ -1,5 +1,6 @@
 FROM node:8.11.3
 
+VOLUME /var/run
 WORKDIR /workspace
 
 ENV STORE_URI=rethinkdb://admin@rethinkdb:28015

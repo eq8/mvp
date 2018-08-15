@@ -139,7 +139,7 @@ function seedBoundedContexts({ conn, table }) {
 									methods: {
 										created: {
 											resolver: {
-												uri: 'http://resolvers/utils/get/0.0?path=created'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=created'
 											},
 											returnType: {
 												name: 'String'
@@ -147,7 +147,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										createdBy: {
 											resolver: {
-												uri: 'http://resolvers/utils/get/0.0?path=createdBy'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=createdBy'
 											},
 											returnType: {
 												name: 'String'
@@ -155,7 +155,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModified: {
 											resolver: {
-												uri: 'http://resolvers/utils/get/0.0?path=lastModified'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=lastModified'
 											},
 											returnType: {
 												name: 'String'
@@ -163,7 +163,7 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModifiedBy: {
 											resolver: {
-												uri: 'http://resolvers/utils/get/0.0?path=lastModifiedBy'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=lastModifiedBy'
 											},
 											returnType: {
 												name: 'String'
@@ -308,7 +308,7 @@ function seedBoundedContexts({ conn, table }) {
 							methods: {
 								meta: {
 									resolver: {
-										uri: 'http://resolvers/utils/get/0.0?path=meta'
+										uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=meta'
 									},
 									returnType: {
 										name: 'Meta'

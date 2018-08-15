@@ -31,13 +31,6 @@ services:
       restart: "always"
       environment:
          - "LOG_LEVEL=trace"
-   resolvers:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-resolvers
-      build:
-         context: ./services/resolvers
-      restart: "always"
-      environment:
-         - "LOG_LEVEL=trace"
    view-ui-default:
       image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
       build:

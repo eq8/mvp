@@ -9,12 +9,17 @@ const define = boot({
 
 define([
 	'lodash',
+	'body-parser',
+	'fs',
+	'cluster',
+	'os',
 	'-/options/index.js',
 	'-/logger/index.js',
 	'-/store/index.js',
 	'-/server/index.js',
-	'-/ext/api/index.js'
-], (_, options, logger, store, server, api) => {
+	'-/ext/api/index.js',
+	'-/ext/resolvers/get/index.js'
+], (_, bodyParser, fs, cluster, os, options, logger, store, server, api, get) => {
 	logger.info('initialized');
 
 	const defaults = {
@@ -23,15 +28,39 @@ define([
 		retryInterval: 1000
 	}
 	const settings = _.defaults(options.get(), defaults);
-	const port = parseInt(_.get(settings, 'port'), 10);
-	const storeUri = _.get(settings, 'storeUri');
-	const retryInterval = parseInt(options.get('retryInterval'), 10);
+	const socketPath = '/var/run/resolvers.sock';
 
-	server.use('/:bctxt/:aggregate/:v', api.middleware());
+	if (cluster.isMaster) {
+		server.use('/:bctxt/:aggregate/:v', api.middleware());
 
-	listen().then(connect);
+		fork().then(startMaster).then(connect);
+	} else {
+		server.use(bodyParser.json());
+		server.use('/get/0.0', get.middleware());
 
-	async function listen() {
+		server.setState('ready');
+		server.listen({ port: socketPath });
+	}
+
+	async function fork() {
+		const CPUs = os.cpus().length;
+
+		logger.info('fork',  { CPUs });
+
+		try {
+			fs.unlinkSync(socketPath);
+		} catch (err) {
+			logger.warn('api unable to unlink socket file', { err });
+		}
+
+		for(let i = 0; i < (2 * CPUs); i++) {
+			cluster.fork();
+		}
+	}
+
+	async function startMaster() {
+		const port = parseInt(_.get(settings, 'port'), 10);
+
 		try {
 			const { success } = await server.listen({ port }) || {};
 
@@ -43,6 +72,9 @@ define([
 	}
 
 	async function connect() {
+		const storeUri = _.get(settings, 'storeUri');
+		const retryInterval = parseInt(options.get('retryInterval'), 10);
+
 		try {
 			const { success } = await store.connect({ storeUri }) || {};
 
