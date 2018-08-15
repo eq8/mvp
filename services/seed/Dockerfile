@@ -1,4 +1,4 @@
-FROM node:8.11.3
+FROM node:10.8.0
 
 ENV HOST rethinkdb
 ENV PORT 28015
