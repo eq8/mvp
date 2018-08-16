@@ -6,7 +6,7 @@ const define = require('@eq8/mvp-boot')({
 });
 
 define([
-	'-/ext/repository/index.js',
+	'-/ext/repository/index.js'
 ], repository => {
 	repository.start();
 });

@@ -26,7 +26,7 @@ define([
 		port: 80,
 		storeUri: 'rethinkdb://admin@127.0.0.1:28015',
 		retryInterval: 1000
-	}
+	};
 	const settings = _.defaults(options.get(), defaults);
 	const socketPath = '/var/run/resolvers.sock';
 
@@ -45,7 +45,7 @@ define([
 	async function fork() {
 		const CPUs = os.cpus().length;
 
-		logger.info('fork',  { CPUs });
+		logger.info('fork', { CPUs });
 
 		try {
 			fs.unlinkSync(socketPath);
@@ -53,7 +53,7 @@ define([
 			logger.warn('api unable to unlink socket file', { err });
 		}
 
-		for(let i = 0; i < (2 * CPUs); i++) {
+		for (let i = 0; i < (2 * CPUs); i++) {
 			cluster.fork();
 		}
 	}

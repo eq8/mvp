@@ -7,3 +7,4 @@ install.img
 node_modules
 *.swp
 package-lock.json
+.eslintcache
