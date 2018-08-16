@@ -3,7 +3,6 @@
 
 define([
 	'lodash',
-	'uuid/v4',
 	'immutable',
 	'graphql-tools',
 	'express-graphql',
@@ -13,7 +12,6 @@ define([
 	'-/ext/utils/index.js'
 ], (
 	_,
-	uuidv4,
 	{ Map, List },
 	{ makeExecutableSchema },
 	graphqlHTTP,
@@ -378,7 +376,7 @@ ${inputs}
 		const { repository } = options || {};
 
 		return (obj, args, rawCtxt) => {
-			const id = uuidv4();
+			const id = rawCtxt.trxId;
 
 			const ctxt = getFilteredImmutableCtxt(rawCtxt);
 
@@ -414,9 +412,7 @@ ${inputs}
 		const uri = repository
 			? repository.get('uri')
 			: '';
-		const tmp = [{
-			id: uuidv4()
-		}];
+		const tmp = [{}]; // TODO: replace me
 
 		logger.info('commit', { obj });
 

@@ -4,9 +4,10 @@
 define([
 	'lodash',
 	'lru-cache',
+	'uuid/v4',
 	'-/logger/index.js',
 	'-/ext/graphql/utils.js'
-], (_, lru, logger, utils) => {
+], (_, lru, uuid, logger, utils) => {
 	const max = !_.isNaN(parseInt(process.env.MVP_API_LRU_MAXSIZE, 10))
 		? parseInt(process.env.MVP_API_LRU_MAXSIZE, 10)
 		: 500;
@@ -35,6 +36,8 @@ define([
 				logger.debug('uri', { uri });
 
 				const cached = cache.get(uri);
+
+				req.trxId = uuid();
 
 				if (cached) {
 					logger.trace(`using cached middleware for ${uri}`);
