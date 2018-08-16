@@ -448,7 +448,7 @@ ${inputs}
 		}
 
 		// TODO: add configuration for self-signed certs
-		const { uri } = resolver || {};
+		const { uri, config } = resolver || {};
 
 		return (obj, args, rawCtxt) => {
 
@@ -458,7 +458,7 @@ ${inputs}
 				request({
 					url: uri,
 					method: 'POST',
-					json: { obj, args, ctxt }
+					json: { config, obj, args, ctxt }
 				}, (httpError, res, body) => {
 					if (httpError) {
 						logger.error('controller unable to resolve', { httpError, body, uri });

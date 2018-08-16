@@ -13,8 +13,8 @@ define([
 
 	function middleware(req, res) {
 		try {
-			const path = _.get(req, 'query.path');
 			const body = _.get(req, 'body') || {};
+			const path = _.get(body, 'config.path');
 			const data = _.get(body, `obj[${path}]`);
 
 			logger.trace('get middleware', { path });

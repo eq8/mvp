@@ -139,7 +139,10 @@ function seedBoundedContexts({ conn, table }) {
 									methods: {
 										created: {
 											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=created'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: 'created'
+												}
 											},
 											returnType: {
 												name: 'String'
@@ -147,7 +150,10 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										createdBy: {
 											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=createdBy'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: 'createdBy'
+												}
 											},
 											returnType: {
 												name: 'String'
@@ -155,7 +161,10 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModified: {
 											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=lastModified'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: 'lastModified'
+												}
 											},
 											returnType: {
 												name: 'String'
@@ -163,7 +172,10 @@ function seedBoundedContexts({ conn, table }) {
 										},
 										lastModifiedBy: {
 											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=lastModifiedBy'
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: 'lastModifiedBy'
+												}
 											},
 											returnType: {
 												name: 'String'
@@ -267,7 +279,10 @@ function seedBoundedContexts({ conn, table }) {
 							actions: {
 								read: {
 									resolver: {
-										uri: 'http://repository/queries/read/0.0?type=domains'
+										uri: 'http://repository/queries/read/0.0',
+										config: {
+											type: 'domains'
+										}
 									},
 									params: {
 										in: 'InputDomainID'
@@ -308,7 +323,10 @@ function seedBoundedContexts({ conn, table }) {
 							methods: {
 								meta: {
 									resolver: {
-										uri: 'http://unix:/var/run/resolvers.sock:/get/0.0?path=meta'
+										uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+										config: {
+											path: 'meta'
+										}
 									},
 									returnType: {
 										name: 'Meta'
@@ -318,7 +336,10 @@ function seedBoundedContexts({ conn, table }) {
 							queries: {
 								browse: {
 									resolver: {
-										uri: 'http://repository/queries/browse/0.0?type=domains'
+										uri: 'http://repository/queries/browse/0.0',
+										config: {
+											type: 'domains'
+										}
 									},
 									params: {
 										in: 'InputDomainPagination'
@@ -326,7 +347,10 @@ function seedBoundedContexts({ conn, table }) {
 								},
 								read: {
 									resolver: {
-										uri: 'http://repository/queries/read/0.0?type=domains'
+										uri: 'http://repository/queries/read/0.0',
+										config: {
+											type: 'domains'
+										}
 									},
 									params: {
 										in: 'InputDomainID'
