@@ -5,7 +5,7 @@ define([
 	'lodash',
 	'lru-cache',
 	'-/logger/index.js',
-	'-/ext/api/utils.js'
+	'-/ext/graphql/utils.js'
 ], (_, lru, logger, utils) => {
 	const max = !_.isNaN(parseInt(process.env.MVP_API_LRU_MAXSIZE, 10))
 		? parseInt(process.env.MVP_API_LRU_MAXSIZE, 10)

@@ -17,9 +17,9 @@ define([
 	'-/logger/index.js',
 	'-/store/index.js',
 	'-/server/index.js',
-	'-/ext/api/index.js',
+	'-/ext/graphql/index.js',
 	'-/ext/resolvers/get/index.js'
-], (_, bodyParser, fs, cluster, os, options, logger, store, server, api, get) => {
+], (_, bodyParser, fs, cluster, os, options, logger, store, server, graphql, get) => {
 	logger.info('initialized');
 
 	const defaults = {
@@ -31,7 +31,7 @@ define([
 	const socketPath = '/var/run/resolvers.sock';
 
 	if (cluster.isMaster) {
-		server.use('/:bctxt/:aggregate/:v', api.middleware());
+		server.use('/:bctxt/:aggregate/:v', graphql.middleware());
 
 		fork().then(startMaster).then(connect);
 	} else {
