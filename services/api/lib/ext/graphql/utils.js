@@ -450,7 +450,11 @@ ${inputs}
 		// TODO: add configuration for self-signed certs
 		const { uri, config } = resolver || {};
 
-		return (obj, args, rawCtxt) => {
+		return (obj, args, rawCtxt, info) => {
+
+			const { path } = info || {};
+
+			logger.trace('GraphQL resolver path', { path });
 
 			const ctxt = getFilteredImmutableCtxt(rawCtxt);
 
