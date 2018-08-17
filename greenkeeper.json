@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "services/api/package.json",
+        "services/repository/package.json",
+        "services/seed/package.json",
+        "services/ui/package.json",
+        "services/ui/static/package.json"
+      ]
+    }
+  }
+}
