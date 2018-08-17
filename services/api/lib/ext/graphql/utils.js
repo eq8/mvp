@@ -449,8 +449,10 @@ ${inputs}
 		return (obj, args, rawCtxt, info) => {
 
 			const { path } = info || {};
+			const { prev: parentPath } = path || {};
+			const { trxId } = rawCtxt || {};
 
-			logger.trace('GraphQL resolver path', { path });
+			logger.trace('GraphQL resolver path', { trxId, uri, parentPath });
 
 			const ctxt = getFilteredImmutableCtxt(rawCtxt);
 
