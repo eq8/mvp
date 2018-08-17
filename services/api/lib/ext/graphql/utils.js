@@ -107,7 +107,7 @@ define([
 
 		const schema = makeExecutableSchema({
 			logger: {
-				log: resolveError => logger.error('controller unable to resolve', { err: resolveError })
+				log: resolveError => logger.error('api unable to resolve', { err: resolveError })
 			},
 			typeDefs,
 			resolvers
@@ -463,7 +463,7 @@ ${inputs}
 					json: { config, obj, args, ctxt }
 				}, (httpError, res, body) => {
 					if (httpError) {
-						logger.error('controller unable to resolve', { httpError, body, uri });
+						logger.error('api unable to resolve', { httpError, body, uri });
 
 						return reject(new Error('Unexpected error while resolving'));
 					}
