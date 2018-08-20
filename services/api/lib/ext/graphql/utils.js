@@ -448,13 +448,19 @@ ${inputs}
 
 		return (obj, args, rawCtxt, info) => {
 
-			const { path } = info || {};
-			const { prev: parentPath } = path || {};
 			const { trxId } = rawCtxt || {};
+			const { path } = info || {};
 
-			logger.trace('GraphQL resolver path', { trxId, uri, parentPath });
+			logger.trace('GraphQL resolver path', {
+				trxId, uri, objPath: getPathAsString(_.get(path, 'prev'))
+			});
 
 			const ctxt = getFilteredImmutableCtxt(rawCtxt);
+
+			/*
+			 * const dataloader = getDataLoader(uri, domain, trxId, objPath, key, config, obj, args, ctxt);
+			 * return dataloader.load(key);
+			 */
 
 			return new Promise((resolve, reject) => {
 				request({
@@ -478,6 +484,20 @@ ${inputs}
 				});
 			});
 		};
+	}
+
+	function getPathAsString(path, initial) {
+		const { prev, key } = path || {};
+
+		if (!path) {
+			return initial;
+		}
+
+		const result = initial
+			? `${key}.${initial}`
+			: key;
+
+		return getPathAsString(prev, result);
 	}
 
 	function getTransactionResolvers(options) {
