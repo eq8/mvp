@@ -1,14 +1,16 @@
+/* global define */
 'use strict';
 
 define([
 	'lodash',
+	'body-parser',
 	'-/options/index.js',
 	'-/logger/index.js',
 	'-/server/index.js',
 	'-/store/index.js',
 	'-/ext/rethinkdb/queries/read/index.js',
 	'-/ext/rethinkdb/actions/commit/index.js'
-], (_, options, logger, server, store, read, commit) => {
+], (_, bodyParser, options, logger, server, store, read, commit) => {
 	const defaults = {
 		port: 8000,
 		retryInterval: 1000
@@ -25,6 +27,7 @@ define([
 
 	async function listen() {
 		try {
+			server.use(bodyParser.json());
 			server.use('/queries/read/0.0', read.middleware());
 			server.use('/actions/commit/0.0', commit.middleware());
 

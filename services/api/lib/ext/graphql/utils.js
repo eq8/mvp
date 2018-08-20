@@ -6,19 +6,19 @@ define([
 	'immutable',
 	'graphql-tools',
 	'express-graphql',
-	'request',
 	'-/logger/index.js',
 	'-/store/index.js',
-	'-/ext/utils/index.js'
+	'-/ext/utils/index.js',
+	'-/ext/graphql/batch-resolver.js'
 ], (
 	_,
 	{ Map, List },
 	{ makeExecutableSchema },
 	graphqlHTTP,
-	request,
 	logger,
 	store,
-	{ toImmutable }
+	{ toImmutable },
+	batchResolver
 ) => {
 	const plugin = {
 		getView
@@ -449,40 +449,11 @@ ${inputs}
 		return (obj, args, rawCtxt, info) => {
 
 			const { trxId } = rawCtxt || {};
-			const { path } = info || {};
-
-			logger.trace('GraphQL resolver path', {
-				trxId, uri, objPath: getPathAsString(_.get(path, 'prev'))
-			});
+			const prevPath = getPathAsString(_.get(info, 'path.prev'));
 
 			const ctxt = getFilteredImmutableCtxt(rawCtxt);
 
-			/*
-			 * const dataloader = getDataLoader(uri, domain, trxId, objPath, key, config, obj, args, ctxt);
-			 * return dataloader.load(key);
-			 */
-
-			return new Promise((resolve, reject) => {
-				request({
-					url: uri,
-					method: 'POST',
-					json: { config, obj, args, ctxt }
-				}, (httpError, res, body) => {
-					if (httpError) {
-						logger.error('api unable to resolve', { httpError, body, uri });
-
-						return reject(new Error('Unexpected error while resolving'));
-					}
-
-					const { error, data } = body || {};
-
-					if (error) {
-						return reject(error);
-					}
-
-					return resolve(data);
-				});
-			});
+			return batchResolver.load({ uri, prevPath, obj, ctxt, trxId, args, config });
 		};
 	}
 

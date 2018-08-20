@@ -14,10 +14,17 @@ define([
 	function middleware(req, res) {
 		try {
 			const body = _.get(req, 'body') || {};
-			const path = _.get(body, 'config.path');
-			const data = _.get(body, `obj[${path}]`);
+			const objects = _.get(body, 'objects');
+			const batch = _.get(body, 'batch');
 
-			logger.trace('get middleware', { path });
+			const data = _.map(batch, info => {
+				const { prevPath, config } = info || {};
+				const { path } = config || {};
+
+				const obj = _.get(objects, prevPath);
+
+				return _.get(obj, path) || null;
+			});
 
 			res.writeHead(200, {
 				'Content-Type': 'application/json'
