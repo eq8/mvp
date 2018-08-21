@@ -18,9 +18,9 @@ define([
 		});
 
 		res.write(JSON.stringify({
-			data: {
+			data: [{
 				success: true
-			}
+			}]
 		}));
 
 		res.end();
