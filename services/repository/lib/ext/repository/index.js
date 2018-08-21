@@ -9,8 +9,9 @@ define([
 	'-/server/index.js',
 	'-/store/index.js',
 	'-/ext/rethinkdb/queries/read/index.js',
+	'-/ext/rethinkdb/queries/browse/index.js',
 	'-/ext/rethinkdb/actions/commit/index.js'
-], (_, bodyParser, options, logger, server, store, read, commit) => {
+], (_, bodyParser, options, logger, server, store, read, browse, commit) => {
 	const defaults = {
 		port: 8000,
 		retryInterval: 1000
@@ -29,6 +30,7 @@ define([
 		try {
 			server.use(bodyParser.json());
 			server.use('/queries/read/0.0', read.middleware());
+			server.use('/queries/browse/0.0', browse.middleware());
 			server.use('/actions/commit/0.0', commit.middleware());
 
 			const { success } = await server.listen({ port }) || {};
