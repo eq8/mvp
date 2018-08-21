@@ -6,8 +6,8 @@ define([
 	'lru-cache',
 	'uuid/v4',
 	'-/logger/index.js',
-	'-/ext/graphql/utils.js'
-], (_, lru, uuid, logger, utils) => {
+	'-/ext/graphql/lib/get-view.js'
+], (_, lru, uuid, logger, getView) => {
 	const max = !_.isNaN(parseInt(process.env.MVP_API_LRU_MAXSIZE, 10))
 		? parseInt(process.env.MVP_API_LRU_MAXSIZE, 10)
 		: 500;
@@ -18,10 +18,6 @@ define([
 		max,
 		maxAge
 	});
-
-	const {
-		getView
-	} = utils;
 
 	const plugin = {
 		middleware() {

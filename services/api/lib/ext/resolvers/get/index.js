@@ -18,13 +18,15 @@ define([
 			const batch = _.get(body, 'batch');
 
 			const data = _.map(batch, info => {
-				const { prevPath, config } = info || {};
+				const { trxId, prevPath, config } = info || {};
 				const { path } = config || {};
 
-				const obj = _.get(objects, prevPath);
+				const obj = _.get(objects, `${trxId}/${prevPath}`);
 
 				return _.get(obj, path) || null;
 			});
+
+			console.log('body', JSON.stringify(body, null, ' '));
 
 			res.writeHead(200, {
 				'Content-Type': 'application/json'
