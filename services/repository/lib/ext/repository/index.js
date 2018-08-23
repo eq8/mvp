@@ -33,7 +33,7 @@ define([
 			server.use('/queries/browse/0.0', browse.middleware());
 			server.use('/actions/commit/0.0', commit.middleware());
 
-			const { success } = await server.listen({ port }) || {};
+			const { success } = await server.listen(port) || {};
 
 			logger.info('server is listening', { port, success });
 		} catch (err) {

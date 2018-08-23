@@ -39,7 +39,7 @@ define([
 		server.use('/get/0.0', get.middleware());
 
 		server.setState('ready');
-		server.listen({ port: socketPath });
+		server.listen(socketPath);
 	}
 
 	async function fork() {
@@ -62,7 +62,7 @@ define([
 		const port = parseInt(_.get(settings, 'port'), 10);
 
 		try {
-			const { success } = await server.listen({ port }) || {};
+			const { success } = await server.listen(port) || {};
 
 			logger.info('server is listening', { port, success });
 		} catch (err) {

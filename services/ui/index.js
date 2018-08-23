@@ -17,7 +17,7 @@ define([
 
 	server.use('/', express.static(path.join(__dirname, './static/build')));
 
-	server.listen({ port }).then(success => {
+	server.listen(port).then(success => {
 		logger.info('server is listening', { port, success });
 		server.setState('ready');
 	}, err => {
