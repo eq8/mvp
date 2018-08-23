@@ -26,8 +26,6 @@ define([
 				return _.get(obj, path) || null;
 			});
 
-			console.log('body', JSON.stringify(body, null, ' '));
-
 			res.writeHead(200, {
 				'Content-Type': 'application/json'
 			});
