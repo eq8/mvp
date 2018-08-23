@@ -89,12 +89,12 @@ define([
 		const { prev, key } = path || {};
 
 		if (!path) {
-			return initial;
+			return initial || '';
 		}
 
 		const result = initial
 			? `${key}.${initial}`
-			: key;
+			: key || '';
 
 		return getPathAsString(prev, result);
 	}
