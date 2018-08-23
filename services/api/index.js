@@ -20,8 +20,6 @@ define([
 	'-/ext/graphql/index.js',
 	'-/ext/resolvers/get/index.js'
 ], (_, bodyParser, fs, cluster, os, options, logger, store, server, graphql, get) => {
-	logger.info('initialized');
-
 	const defaults = {
 		port: 80,
 		storeUri: 'rethinkdb://admin@127.0.0.1:28015',
