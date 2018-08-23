@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/eq8/mvp-repository",
   "dependencies": {
-    "@eq8/mvp-boot": "git+https://git@github.com/eq8/mvp-boot.git#master",
-    "body-parser": "1.18.3"
+    "@eq8/mvp-boot": "git+https://git@github.com/eq8/mvp-boot.git#master"
   }
 }

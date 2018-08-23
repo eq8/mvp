@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@eq8/mvp-boot": "git+https://git@github.com/eq8/mvp-boot.git#master",
-    "body-parser": "1.18.3",
     "dataloader": "1.4.0",
     "express": "4.16.3",
     "express-graphql": "0.6.12",
