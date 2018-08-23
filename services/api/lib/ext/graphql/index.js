@@ -6,18 +6,11 @@ define([
 	'lru-cache',
 	'uuid/v4',
 	'-/logger/index.js',
+	'-/options/index.js',
 	'-/ext/graphql/lib/get-view.js'
-], (_, lru, uuid, logger, getView) => {
-	const max = !_.isNaN(parseInt(process.env.MVP_API_LRU_MAXSIZE, 10))
-		? parseInt(process.env.MVP_API_LRU_MAXSIZE, 10)
-		: 500;
-	const maxAge = !_.isNaN(parseInt(process.env.MVP_API_LRU_MAXAGE, 10))
-		? parseInt(process.env.MVP_API_LRU_MAXAGE, 10)
-		: 1000 * 60 * 60;
-	const cache = lru({
-		max,
-		maxAge
-	});
+], (_, lru, uuid, logger, options, getView) => {
+	const max = parseInt(options.get('maxAggregateCache') || 1024, 10);
+	const cache = lru({ max });
 
 	const plugin = {
 		middleware() {
